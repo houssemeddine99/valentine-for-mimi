@@ -19,7 +19,8 @@ if (sparkleSound) sparkleSound.volume = 0.25; // tiny & cute
 
 // ---- Customize here ----
 nameEl.textContent = "Mimi";
-customMsg.textContent = "Prepare ur cake 🎂💘 I’ll put it in… gently 😌";
+customMsg.textContent = "I choose you. Today, tomorrow, always 💖";
+
 // -------------------------
 // volume tuning
 if (chimeSound) chimeSound.volume = 0.5;
