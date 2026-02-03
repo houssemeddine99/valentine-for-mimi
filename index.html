@@ -6,13 +6,22 @@
   <title>Will you be my Valentine?</title>
   <link rel="stylesheet" href="style.css" />
 </head>
-<audio id="yaySound" src="yay.mp3" preload="auto"></audio>
-<audio id="sparkleSound" src="sparkle.mp3" preload="auto"></audio>
+
 
 <body>
+  <audio id="yaySound" src="yay.mp3" preload="auto"></audio>
+  <audio id="sparkleSound" src="sparkle.mp3" preload="auto"></audio>
+  <audio id="bgMusic" src="music.mp3" preload="auto" loop></audio>
+
   <main class="wrap">
     <section class="card" aria-label="Valentine card">
+        <button class="musicToggle" id="musicToggle" type="button" aria-label="Toggle music">
+  Music: Off 🎵
+</button>
+
       <div class="avatar" aria-hidden="true">
+
+
         <!-- simple cute cat face -->
         <div class="ears">
           <span class="ear ear-l"></span>
@@ -28,17 +37,19 @@
         <span class="heart">❤</span>
       </div>
 
-      <h1 class="title">
-        <span id="name">MiMi</span>, will you be my valentine?
-      </h1>
+      <div id="questionBlock">
+  <h1 class="title">
+    <span id="name">MiMi</span>, will you be my valentine?
+  </h1>
 
-      <div class="buttons" id="playArea">
-        <button class="btn yes" id="yesBtn">Yes</button>
-        <button class="btn no" id="noBtn">No</button>
-      </div>
+  <div class="buttons" id="playArea">
+    <button class="btn yes" id="yesBtn">Yes</button>
+    <button class="btn no" id="noBtn">No</button>
+  </div>
 
-      <p class="hint" id="hint">“No” seems a bit shy 😈</p>
-      <p class="secretHint" id="secretHint" hidden>Ok ok… I get it 😭 Just press YES already 💗</p>
+  <p class="hint" id="hint">“No” seems a bit shy 😈</p>
+  <p class="secretHint" id="secretHint" hidden>Ok ok… I get it 😭 Just press YES already 💗</p>
+</div>
 
 
 <div class="success" id="success" hidden>
@@ -48,9 +59,14 @@
     <img id="yayImg" src="yay.gif" alt="Yay moment" />
   </div>
 
-  <p class="custom" id="customMsg">Dinner on me? 🍝💘</p>
-<p class="love" id="loveLine">I love you Mimi ❤️</p>
-<p class="countdown" id="countdownText"></p>
+  <p class="custom" id="customMsg"></p>
+
+  <button class="btn trap" id="trapBtn" type="button">
+    Trap 😈
+  </button>
+
+  <p class="love" id="loveLine">I love you Mimi ❤️</p>
+  <p class="countdown" id="countdownText"></p>
 
   <p class="small" id="ssHint">
     📸 Take a screenshot and send it to me 😄
@@ -58,8 +74,24 @@
 
   <div class="shareRow">
     <button class="btn share" id="shareBtn" type="button">Share 💌</button>
+    <button class="btn copy" id="copyBtn" type="button">Copy 💌</button>
     <button class="btn again" id="againBtn" type="button">Do it again</button>
   </div>
+
+  <div class="plan" id="planBlock">
+    <p class="planTitle">Pick our plan 😏</p>
+    <div class="planBtns">
+      <button class="btn planBtn" data-plan="Dinner 🍝">Dinner 🍝</button>
+      <button class="btn planBtn" data-plan="Movie 🎬">Movie 🎬</button>
+      <button class="btn planBtn" data-plan="Ice cream 🍦">Ice cream 🍦</button>
+    </div>
+    <p class="planResult" id="planResult" hidden></p>
+  </div>
+</div>
+
+  <p class="planResult" id="planResult" hidden></p>
+</div>
+
 </div>
 
 <!-- Hearts canvas -->
@@ -68,6 +100,18 @@
 
 <!-- Confetti canvas -->
 <canvas id="confetti"></canvas>
+<div class="proposalOverlay" id="proposalOverlay" hidden>
+  <div class="proposalBox" role="dialog" aria-modal="true" aria-label="One more question">
+    <h3>I have one more question… 💞</h3>
+    <p>Open it when you’re ready 😈</p>
+
+    <div class="proposalActions">
+      <button class="btn openSecret" id="openSecretBtn" type="button">Open it 😈</button>
+      <button class="btn closeOverlay" id="closeOverlayBtn" type="button">Not now</button>
+    </div>
+  </div>
+</div>
+
 
     </section>
   </main>
