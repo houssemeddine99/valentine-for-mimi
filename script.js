@@ -9,6 +9,8 @@ const shareBtn = document.getElementById("shareBtn");
 const customMsg = document.getElementById("customMsg");
 const loveLine = document.getElementById("loveLine");
 const countdownText = document.getElementById("countdownText");
+const secretHint = document.getElementById("secretHint");
+const yaySound = document.getElementById("yaySound");
 
 const chimeSound = document.getElementById("chimeSound");
 const popSound = document.getElementById("popSound");
@@ -126,6 +128,10 @@ function moveNoButton() {
   noBtn.style.right = "auto";
 
   dodgeCount++;
+  if (dodgeCount >= 10 && secretHint) {
+  secretHint.hidden = false;
+}
+
   const lines = [
     "“No” seems a bit shy 😈",
     "Oops 😅 try again",
@@ -270,6 +276,9 @@ function showSuccess() {
   yesBtn.disabled = true;
   noBtn.disabled = true;
   hint.textContent = "Best choice ever 💘";
+document.body.classList.remove("pulse");
+void document.body.offsetWidth; // restart animation
+document.body.classList.add("pulse");
 
   vibrateNice();
 
@@ -294,6 +303,7 @@ function reset() {
   success.hidden = true;
   yesBtn.disabled = false;
   noBtn.disabled = false;
+  if (secretHint) secretHint.hidden = true;
   dodgeCount = 0;
   hint.textContent = "“No” seems a bit shy 😈";
 
@@ -334,7 +344,7 @@ againBtn.addEventListener("click", reset);
 shareBtn.addEventListener("click", async () => {
   const text = `${nameEl.textContent} said YES! 💖\n${customMsg.textContent}`;
 
-  // Web Share API (best on mobile)
+  // Web Share API (mobile best)
   if (navigator.share) {
     try {
       await navigator.share({
@@ -342,19 +352,27 @@ shareBtn.addEventListener("click", async () => {
         text,
         url: window.location.href
       });
+
+      // 😈 Secret page after successful share
+      window.location.href = "secret.html";
       return;
     } catch (e) {
-      // user cancelled; ignore
+      // user cancelled share — do nothing
     }
   }
 
-  // fallback: copy text + link
+  // fallback: copy text + link, then go secret
   try {
     await navigator.clipboard.writeText(`${text}\n${window.location.href}`);
     hint.textContent = "Copied! Now paste it in chat 💌";
   } catch {
     hint.textContent = "Copy this link and send it 💌";
   }
+
+  // 😈 still go secret after fallback
+  setTimeout(() => {
+    window.location.href = "secret.html";
+  }, 900);
 });
 
 // keep no button okay on small screens

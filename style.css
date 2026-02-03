@@ -349,5 +349,25 @@ body{
                scale(0.18) rotate(40deg); /* slow rotate */
   }
 }
+@keyframes pinkPulse {
+  0%   { filter: none; }
+  40%  { filter: hue-rotate(-8deg) saturate(1.15) brightness(1.05); }
+  70%  { filter: hue-rotate(6deg) saturate(1.25) brightness(1.08); }
+  100% { filter: none; }
+}
+
+body.pulse{
+  animation: pinkPulse 900ms ease-in-out 2;
+}
+.secretHint{
+  text-align:center;
+  margin: 10px 0 0;
+  font-weight: 800;
+  color: #111;
+  background: rgba(255,255,255,.55);
+  border: 1px dashed rgba(255, 63, 122, .35);
+  padding: 10px 12px;
+  border-radius: 14px;
+}
 
 
